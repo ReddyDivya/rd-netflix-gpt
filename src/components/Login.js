@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-// import Header from "./Header";
+import Header from "./Header";
 import { BG_URL } from "../utils/constants";
 
 const Login = () => {
@@ -7,6 +7,7 @@ const Login = () => {
 
   return (
     <div>
+        <Header/>
         <div className="absolute">
           <img className="" src={BG_URL} alt="logo"/>
         </div>
