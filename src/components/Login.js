@@ -2,10 +2,15 @@ import React, {useState, useRef} from 'react'
 import Header from "./Header";
 import { BG_URL } from "../utils/constants";
 import {checkValidData} from "../utils/validate";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase";
+import { useNavigate } from 'react-router-dom';
+import {useDispatch} from "react-redux";
+import {addUser} from "../utils/userSlice";
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
 
@@ -29,10 +34,27 @@ const Login = () => {
       createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
       .then((userCredential) => {
         const user = userCredential.user;
-        // console.log('user signed up >> ', user);
+
+        updateProfile(auth.currentUser, {
+          displayName: name.current.value, 
+          photoURL: "https://avatars.githubusercontent.com/u/34181144?v=4"
+        }).then(() => {
+          const {displayName, email, uid, photoURL} = auth.currentUser;
+
+           //making dispatch call again to update the displayName, photo
+          dispatch(addUser({displayName:displayName, 
+            uid : uid, 
+            email : email, 
+            photoURL : photoURL
+          }))
+
+          navigate("/browse");
+        }).catch((error) => {
+          navigate("/error");
+        });
       })
       .catch((error) => {
-        setErrorMessage(error.code +"-"+ error.message);
+        setErrorMessage(error.message);
       });
     }
     else //Sign-In
@@ -41,10 +63,10 @@ const Login = () => {
       signInWithEmailAndPassword(auth, email.current.value, password.current.value)
       .then((userCredential) => {
         const user = userCredential.user;
-        // console.log('user login >> ', user);
+        navigate("/browse");
       })
       .catch((error) => {
-        setErrorMessage(error.code +"-"+ error.message);
+        setErrorMessage(error.message);
       });
     }
   }//handleButtonClick
