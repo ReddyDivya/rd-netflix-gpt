@@ -4,9 +4,10 @@ import {IMG_CDN_URL} from "../utils/constants";
 const MovieCard = ({posterPath}) => {
   
   if(!posterPath) return null;
+  console.log(IMG_CDN_URL + posterPath)
 
   return (
-    <div className="w-36 md:w-48 pr-4">
+    <div className="w-32 md:w-32 pr-4 hover:w-[140px]">
       <img alt="Movie Card" src={IMG_CDN_URL + posterPath}/>
     </div>
   )
