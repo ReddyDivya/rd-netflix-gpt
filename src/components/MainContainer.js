@@ -13,7 +13,6 @@ const MainContainer = () => {
 
  //destructuring the values from movie info
  const {original_title, overview, id} = mainMovie;
- console.log('MC >>', id)
 
   return (
     <div className="pt-[30%] bg-black md:pt-0">
