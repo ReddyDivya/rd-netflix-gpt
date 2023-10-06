@@ -7,7 +7,7 @@ const useTopRatedMovies = () => {
   const dispatch = useDispatch();
 
   //get 'Top Rated Movies' from the redux store
-  const topRatedMovies = useSelector((store) => store.movies);
+  const topRatedMovies = useSelector((store) => store.movies.topRatedMovies);
 
   //fetch 'Top Rated Movies' from the TMDB api
   const getTopRatedMovies = async () => {
@@ -19,8 +19,8 @@ const useTopRatedMovies = () => {
   }
 
   useEffect(() => {
-    //If there's no 'Top Rated Movies' exists, make a call & fetch Popolar movies
-    getTopRatedMovies();
+    //If there's no 'Top Rated Movies' exists, make a call & fetch movies
+    !topRatedMovies && getTopRatedMovies();
   }, [])
 }
 

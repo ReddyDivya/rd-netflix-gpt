@@ -7,7 +7,7 @@ const useUpComingMovies = () => {
     const dispatch = useDispatch();
 
     //get 'UpComing Movies' from the redux store
-    const upComingMovies = useSelector((store) => store.movies);
+    const upComingMovies = useSelector((store) => store.movies.upComingMovies);
 
     
     //fetch 'UpComing Movies' from the TMDB api
@@ -20,7 +20,8 @@ const useUpComingMovies = () => {
     }
 
     useEffect(() => {
-        getUpComingMovies();
+        //If there's no 'UpComing Movies' exists, make a call & fetch UpComing movies
+       !upComingMovies && getUpComingMovies();
     }, [])
 }
 

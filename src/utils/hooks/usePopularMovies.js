@@ -7,7 +7,7 @@ const usePopularMovies = () => {
   const dispatch = useDispatch();
   
   //getting Popolar movies info from the redux store
-  const popularMovies = useSelector((store) => store.movies);
+  const popularMovies = useSelector((store) => store.movies.popularMovies);
 
   //fetching Popular movies
   const getPopularMovies = async () => {
@@ -19,8 +19,8 @@ const usePopularMovies = () => {
   }
 
   useEffect(() => {
-    //If there's no popular movies exists, make a call & fetch Popolar movies
-    getPopularMovies();
+    //If there's no popular movies exists, make a call & fetch Popular movies
+    !popularMovies && getPopularMovies();
   }, [])
 }
 
