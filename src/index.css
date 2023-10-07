@@ -14,5 +14,15 @@
             -ms-overflow-style: none;  /* IE and Edge */
             scrollbar-width: none;  /* Firefox */
         }
+
+        /* Colors - background color */
+        .graybackgroundColor {
+            background-color : #141414;
+        }
+        
+        .scrollbackgroundColor {
+            background-color : #3a3a3a;
+            opacity: 0.6;
+        }
     }
 }
