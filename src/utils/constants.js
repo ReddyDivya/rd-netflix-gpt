@@ -17,4 +17,12 @@ export const API_OPTIONS = {
     Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlM2QwY2Y1YzkzOTEwNTdjODYyNTZiYmEzMThlNWZiYiIsInN1YiI6IjYwOGZkODM0NjI5YjJjMDA1Nzk2Y2NhZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.qbSzFA0NNuIy08-JUno00NUkFUqZjgRrc8PDXrS_rFg'
   }
 };
-  
+
+export const SUPPORTED_LANGUAGES = [
+  {identifier : "en", name: "English"},
+  {identifier : "telugu", name: "Telugu"},
+  {identifier : "tamil", name: "Tamil"},
+  {identifier : "hindi", name: "Hindi"},
+  {identifier : "spanish", name: "Spanish"},
+  {identifier : "french", name: "French"},
+]
