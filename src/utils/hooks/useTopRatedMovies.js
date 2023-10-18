@@ -19,7 +19,7 @@ const useTopRatedMovies = () => {
   }
 
   useEffect(() => {
-    //If there's no 'Top Rated Movies' exists, make a call & fetch movies
+    //Memoization - If there's no 'Top Rated Movies' exists, make a call & fetch movies
     !topRatedMovies && getTopRatedMovies();
   }, [])
 }

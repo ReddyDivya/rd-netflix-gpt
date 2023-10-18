@@ -6,17 +6,19 @@ export const BG_URL =  "https://assets.nflxext.com/ffe/siteui/vlv3/fc164b4b-f085
 
 export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w200/";
 
-export const REACT_APP_TMDB_KEY = "e3d0cf5c9391057c86256bba318e5fbb";
+// export const REACT_APP_TMDB_KEY = process.env.REACT_APP_TMDB_KEY;
 
-export const REACT_APP_TMDB_ACCESS_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlM2QwY2Y1YzkzOTEwNTdjODYyNTZiYmEzMThlNWZiYiIsInN1YiI6IjYwOGZkODM0NjI5YjJjMDA1Nzk2Y2NhZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.qbSzFA0NNuIy08-JUno00NUkFUqZjgRrc8PDXrS_rFg";
+// export const REACT_APP_TMDB_ACCESS_TOKEN = process.env.REACT_APP_TMDB_ACCESS_TOKEN;
 
 export const API_OPTIONS = {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlM2QwY2Y1YzkzOTEwNTdjODYyNTZiYmEzMThlNWZiYiIsInN1YiI6IjYwOGZkODM0NjI5YjJjMDA1Nzk2Y2NhZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.qbSzFA0NNuIy08-JUno00NUkFUqZjgRrc8PDXrS_rFg'
+    Authorization: 'Bearer' + process.env.REACT_APP_TMDB_KEY
   }
 };
+
+export const OPENAI_KEY = process.env.REACT_APP_OPENAI_KEY;
 
 export const SUPPORTED_LANGUAGES = [
   {identifier : "en", name: "English"},

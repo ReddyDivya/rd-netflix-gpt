@@ -19,7 +19,7 @@ const usePopularMovies = () => {
   }
 
   useEffect(() => {
-    //If there's no popular movies exists, make a call & fetch Popular movies
+    //Memoization - If there's no popular movies exists, make a call & fetch Popular movies
     !popularMovies && getPopularMovies();
   }, [])
 }

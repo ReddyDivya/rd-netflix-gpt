@@ -20,7 +20,7 @@ const useUpComingMovies = () => {
     }
 
     useEffect(() => {
-        //If there's no 'UpComing Movies' exists, make a call & fetch UpComing movies
+        //Memoization - If there's no 'UpComing Movies' exists, make a call & fetch UpComing movies
        !upComingMovies && getUpComingMovies();
     }, [])
 }

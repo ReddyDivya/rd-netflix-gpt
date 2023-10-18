@@ -25,7 +25,7 @@ const useMovieTrailer = ({movieId}) => {
   };//getMovieVideos
 
   useEffect(() => {
-    //add trailer to the redux only if there's no movie trailer exists.
+    //Memoization - add trailer to the redux only if there's no movie trailer exists.
     !trailerVideo && getMovieVideos();
   }, [])
 }

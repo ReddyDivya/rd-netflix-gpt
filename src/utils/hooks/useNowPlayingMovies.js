@@ -17,7 +17,7 @@ const useNowPlayingMovies = () => {
     };
   
     useEffect(() => {
-      //If there's now playing movies exists, make a call & fetch movies
+      //Memoization - If there's now playing movies exists, don't make a call & fetch movies
       !nowPlayingMovies && getNowPlayingMovies();
     }, [])
 }
