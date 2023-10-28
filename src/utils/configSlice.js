@@ -4,8 +4,12 @@ const configSlice = createSlice({
   name: "config",
   initialState: {
     lang: "en",
+  
   },
-  reducers: {
+  
+  
+  
+  reducers:                              {
     changeLanguage: (state, action) => {
       state.lang = action.payload;
     },

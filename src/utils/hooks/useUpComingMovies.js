@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { addUpComingMovies } from "../movieSlice";
 import { API_OPTIONS } from "../constants";
 
+
 const useUpComingMovies = () => {
+
     const dispatch = useDispatch();
 
     //get 'UpComing Movies' from the redux store
