@@ -1,5 +1,8 @@
 # Netflix GPT
 
+Netflix GPT with OpenAI suggests movies through interactive prompts. Enhance your movie recommendations with dynamic conversations, creating a personalized and engaging streaming experience like never before.
+
+
 - Create React App
 - Configured TailwindCSS
 - Header
