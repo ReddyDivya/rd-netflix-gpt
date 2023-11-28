@@ -19,7 +19,8 @@ export const API_OPTIONS = {
   }
 };
 
-export const OPENAI_KEY = process.env.REACT_APP_OPENAI_KEY;
+// export const OPENAI_KEY = process.env.REACT_APP_OPENAI_KEY;
+export const OPENAI_KEY = "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"
 
 export const SUPPORTED_LANGUAGES = [
   {identifier : "en", name: "English"},

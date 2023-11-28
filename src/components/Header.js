@@ -64,11 +64,17 @@ const Header = () => {
 
   return (
     <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between">
+        {
+          /*
+           Mobile => mx-auto to center the Netflix image
+           Desktop => md:mx-0 to left the Netflix image
+           */
+        }
         <img className="w-44 mx-auto md:mx-0" src={LOGO} alt="logo"/>
 
         {
           showGptSearch && 
-          <select className="p-2 m-2 bg-gray-900 text-white" onChange={handleChangeLanguage}>
+          <select className="p-2 m-2 bg-gray-900 text-white w-25 h-10  mr-[-50%] " onChange={handleChangeLanguage}>
           {SUPPORTED_LANGUAGES.map((lang) => (
             <option key={lang.identifier} value={lang.identifier}>
               {lang.name}
@@ -76,9 +82,11 @@ const Header = () => {
           ))}
           </select>
         }
-        <button className="bg-purple-800 text-white m-4 p-2 rounded-lg" onClick={handleGptSearchClick}>{showGptSearch ? "Home" : "Gpt Search"}</button>
+
+        <button className="bg-purple-800 text-white w-32 h-10 mt-2 mr-[-54%] rounded-lg" onClick={handleGptSearchClick}>{showGptSearch ? "Home" : "Gpt Search"}</button>
+
         {
-          user && <div className="flex m-2">
+          user && <div className="flex">
           <img className="w-10 h-10 mx-4 my-2" 
           alt="usericon"
           src={user?.photoURL} 

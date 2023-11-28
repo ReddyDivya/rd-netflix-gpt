@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import lang from "../utils/languageConstants";
 import { useDispatch, useSelector } from 'react-redux';
-// import openai from '../utils/openai';
+import openai from '../utils/openai';
 import ErrorHandling from "./ErrorHandling";
 
 import { addGPTMovieResults } from '../utils/gptSlice';
@@ -28,11 +28,11 @@ const GptSearchBar = () => {
 
   const handleGptSearchClick = async () => {
     // Make an API call to GPT API and get Movie Results
-
+console.log(searchText.current.value );
     //We should give GPT a prompt
-    // const gptQuery =  "Act as a Movie Recommendation system and suggest some movies for the query : " +
-    // searchText.current.value +
-    // ". only give me names of 5 movies, comma seperated like the example result given ahead. Example Result: Bahubali, Billa, Darling, Bujjigadu, Sahoo";
+    const gptQuery =  "Act as a Movie Recommendation system and suggest some movies for the query : " +
+    searchText.current.value +
+    ". only give me names of 5 movies, comma seperated like the example result given ahead. Example Result: Bahubali, Billa, Darling, Bujjigadu, Sahoo";
 
     //We are making openAI calls, we need to set message, role
     // const gptResults = await openai.chat.completions.create({
@@ -40,7 +40,7 @@ const GptSearchBar = () => {
     //   model : "gpt-3.5-turbo",
     // })
 
-    // //Error Handling
+    //Error Handling
     // if(!gptResults.choices)
     // {
     //     <ErrorHandling/>
@@ -52,7 +52,7 @@ const GptSearchBar = () => {
     // const gptMovies = gptResults.choices?.[0]?.message?.content.split(",");
 
     // const gptMovies = ["Bahubali", "Billa", "Darling", "Bujjigadu", "Sahoo"];
-    const gptMovies = ["Bahubali"];
+    const gptMovies = ["Bahubali", "Kick", "Rowdy", "Bujjigadu", "Pournami", "Shankar Dada MBBS", "Pelli Choopulu", "RRR", "Chatrapathi", "Ek Niranjan"];
     
     //We should search for movies through TMDB API, it gives promises [Promise, Promise, Promise, Promise, Promise]
     const searchMovies = gptMovies.map((movie) => searchMovieTMDB(movie))

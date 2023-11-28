@@ -7,10 +7,17 @@ const GptSearch = () => {
   return (
     <>
         <div className="fixed -z-10">
-          <img className="object-cover" src={BG_URL} alt="logo"/>
+          {
+            /*
+            Mobile => 
+            h-screen(for banner to take entire screen height)
+            object-cover(Resize an image to cover its entire container)
+            */
+          }
+          <img className="h-screen object-cover md:w-screen" src={BG_URL} alt="logo"/>
         </div>
 
-        <div className="">
+        <div className="pt-[30%] md:p-0">
             <GptSearchBar/>
             <GptMovieSuggestions/>
         </div>
