@@ -77,7 +77,7 @@ const Header = () => {
             {showGptSearch ? "Home" : "GPT Search"}
           </button>
           <img
-            className="hidden md:block w-12 h-12"
+            className="hidden md:block w-12 h-12 rounded-full"
             alt="usericon"
             src={user?.photoURL}
           />
