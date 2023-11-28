@@ -1,101 +1,90 @@
-import React, {useEffect} from 'react'
-import {LOGO, SUPPORTED_LANGUAGES} from "../utils/constants";
-import { useSelector } from 'react-redux';
-import { signOut } from "firebase/auth";
-import {auth} from "../utils/firebase";
-import { useNavigate } from 'react-router-dom';
-import { onAuthStateChanged } from "firebase/auth";
-import { useDispatch } from 'react-redux';
-import {addUser, removeUser} from "../utils/userSlice";
-import {toggleGptSearchView} from "../utils/gptSlice";
-import {changeLanguage} from "../utils/configSlice";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { LOGO, SUPPORTED_LANGUAGES } from "../utils/constants";
+import { auth } from "../utils/firebase";
+import { addUser, removeUser } from "../utils/userSlice";
+import { toggleGptSearchView } from "../utils/gptSlice";
+import { changeLanguage } from "../utils/configSlice";
 
 const Header = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  //fetching user details from the redux store using the useSelector
+  const navigate = useNavigate();
   const user = useSelector((store) => store.user);
-
-  //fetching showGptSearch details from the redux store using the useSelector
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
-
-  //signout
-  const handleSignout = () => {
-    signOut(auth).then(() => {
-      // Sign-out successful.
-      //automatically triggers onAuthStateChanged
-    }).catch((error) => {
-      navigate("/error");
-    });
-  }//handleSignout
-
-  //toggle gpt search 
-  const handleGptSearchClick = () => {  
-    dispatch(toggleGptSearchView());
-  }
-
-  const handleChangeLanguage = (e) => {
-  console.log(e.target.value);
-    dispatch(changeLanguage(e.target.value));
-  }
-
-  //pushing the userInfo while Sign up, Sign in to the redux store.
-  useEffect(() => {
-    //onAuthStateChanged is called during Sign up, sign in, sign out.
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-        if (user) 
-        {
-            //Sign up, sign in
-          const {uid, displayName, email, photoURL} = user;
-          dispatch(addUser({email:email, displayName:displayName, uid:uid, photoURL : photoURL}))
-          navigate("/browse");
-        } else {
-            //sign out
-            dispatch(removeUser());
-            navigate("/");
-        }
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {})
+      .catch((error) => {
+        navigate("/error");
       });
+  };
 
-      //cleaning. It's called when the onAuthStateChanged unmounts
-      return() => unsubscribe();
-}, []);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, email, displayName, photoURL } = user;
+        dispatch(
+          addUser({
+            uid: uid,
+            email: email,
+            displayName: displayName,
+            photoURL: photoURL,
+          })
+        );
+        navigate("/browse");
+      } else {
+        dispatch(removeUser());
+        navigate("/");
+      }
+    });
 
+    // Unsiubscribe when component unmounts
+    return () => unsubscribe();
+  }, []);
+
+  const handleGptSearchClick = () => {
+    // Toggle GPT Search
+    dispatch(toggleGptSearchView());
+  };
+
+  const handleLanguageChange = (e) => {
+    dispatch(changeLanguage(e.target.value));
+  };
 
   return (
     <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between">
-        {
-          /*
-           Mobile => mx-auto to center the Netflix image
-           Desktop => md:mx-0 to left the Netflix image
-           */
-        }
-        <img className="w-44 mx-auto md:mx-0" src={LOGO} alt="logo"/>
-
-        {
-          showGptSearch && 
-          <select className="p-2 m-2 bg-gray-900 text-white w-25 h-10  mr-[-50%] " onChange={handleChangeLanguage}>
-          {SUPPORTED_LANGUAGES.map((lang) => (
-            <option key={lang.identifier} value={lang.identifier}>
-              {lang.name}
-            </option>
-          ))}
-          </select>
-        }
-
-        <button className="bg-purple-800 text-white w-32 h-10 mt-2 mr-[-54%] rounded-lg" onClick={handleGptSearchClick}>{showGptSearch ? "Home" : "Gpt Search"}</button>
-
-        {
-          user && <div className="flex">
-          <img className="w-10 h-10 mx-4 my-2" 
-          alt="usericon"
-          src={user?.photoURL} 
+      <img className="w-44 mx-auto md:mx-0" src={LOGO} alt="logo" />
+      {user && (
+        <div className="flex p-2 justify-between">
+          {showGptSearch && (
+            <select
+              className="p-2 m-2 bg-gray-900 text-white"
+              onChange={handleLanguageChange}
+            >
+              {SUPPORTED_LANGUAGES.map((lang) => (
+                <option key={lang.identifier} value={lang.identifier}>
+                  {lang.name}
+                </option>
+              ))}
+            </select>
+          )}
+          <button
+            className="py-2 px-4 mx-4 my-2 bg-purple-800 text-white rounded-lg"
+            onClick={handleGptSearchClick}
+          >
+            {showGptSearch ? "Home" : "GPT Search"}
+          </button>
+          <img
+            className="hidden md:block w-12 h-12"
+            alt="usericon"
+            src={user?.photoURL}
           />
-          <button onClick={handleSignout} className="bg-red-500 font-bold w-20 h-10 mt-2 rounded-lg text-white">Signout</button>
+          <button onClick={handleSignOut} className="bg-red-500 font-bold w-20 h-10 mt-2 ml-2 rounded-lg text-white">Logout</button>
         </div>
-        }
+      )}
     </div>
-  )
-}
-
+  );
+};
 export default Header;
