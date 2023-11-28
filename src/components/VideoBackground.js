@@ -7,7 +7,7 @@ const VideoBackground = ({movieId}) => {
  const trailerVideo = useSelector((store) => store.movies?.trailerVideo);
  
  //adding or fetching the movie trailer to or from the redux
- useMovieTrailer(movieId);
+ useMovieTrailer({movieId});
 
  return (
     <div className="w-screen">

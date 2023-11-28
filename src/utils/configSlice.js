@@ -4,7 +4,6 @@ const configSlice = createSlice({
   name: "config",
   initialState: {
     lang: "en",
-  
   },
   
   
