@@ -3,7 +3,6 @@ import lang from "../utils/languageConstants";
 import { useDispatch, useSelector } from 'react-redux';
 import openai from '../utils/openai';
 import ErrorHandling from "./ErrorHandling";
-
 import { addGPTMovieResults } from '../utils/gptSlice';
 import { API_OPTIONS } from '../utils/constants';
 import MovieList from './MovieList';
@@ -17,7 +16,7 @@ const GptSearchBar = () => {
   const searchMovieTMDB = async (movie) => {
 
     const data = await fetch( "https://api.themoviedb.org/3/search/movie?query=" +
-    movie + "&include_adult=false&language=en-US&page=1", API_OPTIONS);
+    movie + "&include_adult=true&language=en-US&page=1", API_OPTIONS);
 
     // console.log('data >>', data);
     const json = await data.json();
@@ -52,7 +51,7 @@ console.log(searchText.current.value );
     // const gptMovies = gptResults.choices?.[0]?.message?.content.split(",");
 
     // const gptMovies = ["Bahubali", "Billa", "Darling", "Bujjigadu", "Sahoo"];
-    const gptMovies = ["Bahubali", "Kick", "Rowdy", "Bujjigadu", "Pournami", "Shankar Dada MBBS", "Pelli Choopulu", "RRR", "Chatrapathi", "Ek Niranjan"];
+    const gptMovies = ["Aha Naa Pellanta", "Jambalakidi Pamba", "Hello Brother", "Manmadhudu", "Venky", "Dookudu", "Pelli Choopulu", "F2: Fun and Frustration", "Express Raja", "Bhale Bhale Magadivoy", "Ala Modalaindi", "Oopiri"];
     
     //We should search for movies through TMDB API, it gives promises [Promise, Promise, Promise, Promise, Promise]
     const searchMovies = gptMovies.map((movie) => searchMovieTMDB(movie))

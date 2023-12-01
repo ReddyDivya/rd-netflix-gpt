@@ -27,6 +27,4 @@ export const SUPPORTED_LANGUAGES = [
   {identifier : "telugu", name: "Telugu"},
   {identifier : "tamil", name: "Tamil"},
   {identifier : "hindi", name: "Hindi"},
-  {identifier : "spanish", name: "Spanish"},
-  {identifier : "french", name: "French"},
 ]

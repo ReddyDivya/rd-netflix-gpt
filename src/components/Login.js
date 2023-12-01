@@ -3,7 +3,7 @@ import Header from "./Header";
 import { BG_URL, USER_AVATAR } from "../utils/constants";
 import {checkValidData} from "../utils/validate";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth } from "../utils/firebase";
+import { auth } from "../firebase";
 import { useNavigate } from 'react-router-dom';
 import {useDispatch} from "react-redux";
 import {addUser} from "../utils/userSlice";
