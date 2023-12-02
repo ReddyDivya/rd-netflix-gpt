@@ -5,9 +5,8 @@ import appStore from "../../utils/appStore";
 import "@testing-library/jest-dom";
 import Login from "../Login";
 
-it('renders Sign In button', () => {
-
-    //Render the Header Component
+it('Should renders Sign In form with placeholders like email, password, and login button', () => {
+    //Render the Login Component
     render(
         <BrowserRouter>
             <Provider store={appStore}>
@@ -15,9 +14,20 @@ it('renders Sign In button', () => {
             </Provider>
         </BrowserRouter>
     );
+    
+    //Email placeholder
+    const emailInput = screen.getByPlaceholderText('Email address');
 
+    // Check if the email input is present
+    expect(emailInput).toBeInTheDocument();
+
+    //Password placeholder
+    const passwordInput = screen.getByPlaceholderText('Password');
+
+    // Check if the Password input is present
+    expect(passwordInput).toBeInTheDocument();
+    
     //Check if the Logout button is present
-    const loginButton = screen.getByRole('button', {name: 'Sign In'});
-    expect(loginButton).toBeInTheDocument();
-})
-
+    const signInButton = screen.getByRole('button', {name: 'Sign In'});
+    expect(signInButton).toBeInTheDocument();
+  });
