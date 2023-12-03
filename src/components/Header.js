@@ -13,6 +13,8 @@ const Header = () => {
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
+
+  //Logout
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {})
