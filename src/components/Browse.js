@@ -8,6 +8,7 @@ import useTopRatedMovies from '../utils/hooks/useTopRatedMovies';
 import useUpComingMovies from '../utils/hooks/useUpComingMovies';
 import { useSelector } from 'react-redux';
 import GptSearch from './GptSearch';
+import Footer from './Footer';
 
 const Browse = () => {
   
@@ -35,6 +36,7 @@ const Browse = () => {
             </>
           )
         }
+        <Footer/>
     </div>
   )
 }
