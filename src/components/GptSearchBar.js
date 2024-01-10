@@ -3,6 +3,8 @@ import lang from "../utils/languageConstants";
 import { useDispatch, useSelector } from 'react-redux';
 import { addGPTMovieResults } from '../utils/gptSlice';
 import { API_OPTIONS } from '../utils/constants';
+import openai from '../utils/openai';
+import ErrorHandling from './ErrorHandling';
 
 const GptSearchBar = () => {
   const dispatch = useDispatch();
@@ -28,27 +30,27 @@ console.log(searchText.current.value );
     //We should give GPT a prompt
     const gptQuery =  "Act as a Movie Recommendation system and suggest some movies for the query : " +
     searchText.current.value +
-    ". only give me names of 5 movies, comma seperated like the example result given ahead. Example Result: Bahubali, Billa, Darling, Bujjigadu, Sahoo";
-
+    ". only give me names of 10 movies, comma seperated like the example result given ahead. Example Result: Bahubali, Billa, Darling, Bujjigadu, Sahoo";
+console.log('Query >> '+ gptQuery);
     //We are making openAI calls, we need to set message, role
-    // const gptResults = await openai.chat.completions.create({
-    //   message : [{role: "user", content : gptQuery}],
-    //   model : "gpt-3.5-turbo",
-    // })
+    const gptResults = await openai.chat.completions.create({
+      messages : [{role: "user", content : gptQuery}],
+      model : "gpt-3.5-turbo",
+    })
 
-    //Error Handling
-    // if(!gptResults.choices)
-    // {
-    //     <ErrorHandling/>
-    // }
+    // Error Handling
+    if(!gptResults.choices)
+    {
+        <ErrorHandling/>
+    }
 
-    // console.log(gptResults.choices?.[0]?.message?.content);
+    console.log(gptResults.choices?.[0]?.message?.content);
 
     //Bahubali, Billa, Darling, Bujjigadu, Sahoo
-    // const gptMovies = gptResults.choices?.[0]?.message?.content.split(",");
+    const gptMovies = gptResults.choices?.[0]?.message?.content.split(",");
 
     // const gptMovies = ["Bahubali", "Billa", "Darling", "Bujjigadu", "Sahoo"];
-    const gptMovies = ["Aha Naa Pellanta", "Jambalakidi Pamba", "Hello Brother", "Manmadhudu", "Venky", "Dookudu", "Pelli Choopulu", "F2: Fun and Frustration", "Express Raja", "Bhale Bhale Magadivoy", "Ala Modalaindi", "Oopiri"];
+    // const gptMovies = ["Aha Naa Pellanta", "Jambalakidi Pamba", "Hello Brother", "Manmadhudu", "Venky", "Dookudu", "Pelli Choopulu", "F2: Fun and Frustration", "Express Raja", "Bhale Bhale Magadivoy", "Ala Modalaindi", "Oopiri"];
     
     //We should search for movies through TMDB API, it gives promises [Promise, Promise, Promise, Promise, Promise]
     const searchMovies = gptMovies.map((movie) => searchMovieTMDB(movie))
