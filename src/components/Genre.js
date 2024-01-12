@@ -2,7 +2,7 @@ import React from 'react'
 
 const Genre = ({genre}) => {
   return (
-    <div className="flex items-center bg-cyan-700 px-2 py-1 rounded-md mr-2 text-xs">
+    <div className="flex items-center bg-cyan-700 px-2 py-1 rounded-md mr-2 text-xs text-white w-32 h-8">
         <h3>{genre}</h3>
     </div>
   )

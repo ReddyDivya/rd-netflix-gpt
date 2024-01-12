@@ -6,7 +6,7 @@ export const BG_URL =  "https://assets.nflxext.com/ffe/siteui/vlv3/fc164b4b-f085
 
 export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w200/";
 
-// export const REACT_APP_TMDB_KEY = process.env.REACT_APP_TMDB_KEY;
+export const REACT_APP_TMDB_KEY = process.env.REACT_APP_TMDB_KEY;
 
 // export const REACT_APP_TMDB_ACCESS_TOKEN = process.env.REACT_APP_TMDB_ACCESS_TOKEN;
 
@@ -20,7 +20,6 @@ export const API_OPTIONS = {
 };
 
 // export const OPENAI_KEY = process.env.REACT_APP_OPENAI_KEY;
-export const OPENAI_KEY = "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"
 
 
 export const SUPPORTED_LANGUAGES = [
