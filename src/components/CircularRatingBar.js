@@ -11,6 +11,7 @@ const CircularRatingBar = ({rating}) => {
         text={`${rating}%`}
         styles={buildStyles({
           textColor: '#fff',
+          bgColor:'#000',
           pathColor: rating < 5 ? "red" : (rating < 7 ? "orange" : "green"),
           textSize: "large",
         })}/>

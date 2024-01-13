@@ -3,6 +3,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Login from "./Login";
 import Browse from "./Browse";
 import Movie from './Movie';
+import Favourites from "./Favourites";
+import WatchList from "./WatchList";
 
 const Body = () => {
 
@@ -20,6 +22,14 @@ const Body = () => {
             path: "/movie/:movieId",
             element: <Movie/>,
         },
+        {
+            path: "/favourites",
+            element: <Favourites/>
+        },
+        {
+            path: "/watchlist",
+            element: <WatchList/>
+        }
     ])
 
   return (

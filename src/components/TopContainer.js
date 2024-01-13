@@ -9,6 +9,9 @@ import Genre from './Genre';
 import CircularRatingBar from './CircularRatingBar';
 import VideoBackground from './VideoBackground';
 import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import { addFavouriteMovie, addWatchList } from '../utils/movieSlice';
+import Header from './Header';
 
 const TopContainer = () => {
     const [toggle, setToggle] = useState(false);
@@ -30,19 +33,19 @@ const TopContainer = () => {
         setToggle(!toggle);
     };
 
-    //pause the video
-    const handlePause = () => {
+    //close the video
+    const handleClose = () => {
         setToggle(false);
     }
 
     //add movie to favourites
-    const addToFavourite = () => {
-        dispatch(addToFavourite(details?.movieDetails))
+    const handleAddToFavourite = () => {
+        dispatch(addFavouriteMovie(details?.movieDetails))
     }
     
     //add movie to watchlist
-    const addToWatchList = () => {
-        dispatch(addToWatchList(details?.movieDetails))
+    const handleAddToWatchList = () => {
+        dispatch(addWatchList(details?.movieDetails))
     }
 
   return (
@@ -74,7 +77,7 @@ const TopContainer = () => {
               </h1>
 
               {/* tagline */}
-              <p className="font-light text-sm">{details.movieDetails?.tagline}</p>
+              <i className="font-light text-sm mt-2">{details.movieDetails?.tagline}</i>
               <div className=" flex py-2">
                 <h3>{date}</h3>
 
@@ -97,7 +100,7 @@ const TopContainer = () => {
 
                 {/* add to favourite */} 
                 <button
-                  onClick={addToFavourite}
+                  onClick={handleAddToFavourite}
                   className="md:mx-4 mx-1 px-2 py-2 transition hover:-translate-y-1 after:text-red-600"
                 >
                   <GiSelfLove size={32}/>
@@ -105,16 +108,12 @@ const TopContainer = () => {
                 
                 {/* save to watchlist */}
                 <button
-                  onClick={addToWatchList}
+                  onClick={handleAddToWatchList}
                   className="md:mx-4 mx-1 px-2 py-2  transition hover:-translate-y-1 after:text-red-600"
                 >
                   <MdOutlineBookmarkAdd size={32}/>
                 </button>
                 
-
-                <button className="md:mx-4 mx-1 px-2 py-2  transition hover:-translate-y-1 after:text-red-600">
-                  <MdOutlineBookmarkAdd size={32}/>
-                </button>
                 <button
                   onClick={() => {
                     handlePlay();
@@ -133,38 +132,30 @@ const TopContainer = () => {
             </div>
           </div>
 
-          {/* {toggle && (<>
-            <div className="w-full h-screen absolute flex items-center">
-                <div className="w-full aspect-video px-2 md:w-[50%] z-30 top-[45%] md:top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 absolute">
-                  <VideoBackground movieId={movieId} />
+          {toggle && (<>
+            <div className="w-full h-screen absolute flex items-start justify-start">
+                <div className="w-full aspect-video px-2 md:w-[50%] z-30 top-[45%] md:top-[-23%] left-[35%] -translate-x-1/2 -translate-y-1/2 absolute">
+                  <VideoBackground movieId={movieId} widthScreen={"w-8/12"} />
                 </div>
-                <div
-                  onClick={handlePause}
-                  className="w-full h-screen flex text-white bg-black bg-opacity-95 z-20 absolute"
-                >
-                  <h2 className="pt-8 pl-8 font-medium text-xl">
-                    Movie Trailer
-                  </h2>
-                  <button className="absolute transition hover:-translate-y-1 p-8 right-0">
-                    <MdCancel size={32} />
-                  </button>
-                </div>
+                <button onClick={handleClose} className="absolute text-white md:top-[-65%] md:right-[17%]">
+                    <MdCancel size={32} className="cursor-pointer" />
+                </button>
               </div>{" "}
-          </>)} */}
+          </>)}
         </div>
 
         {/* alert message*/}
-        <ToastContainer
-          position="top-center"
-          autoClose={1000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable={false}
-          pauseOnHover
-          theme="light"
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
           />
     </div>
   )

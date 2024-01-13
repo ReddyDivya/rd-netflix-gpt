@@ -25,16 +25,16 @@ const MovieCard = ({title, movieId, date, rating, vote, posterPath, genre}) => {
           <img alt="Movie Card" src={IMG_CDN_URL + posterPath}/>
 
           {/* rating */}
-          <div className="relative bottom-4 md:left-16 md:bottom-8 w-8 md:w-14 bg-gray-900 rounded-full z-20">
+          <div className="relative bottom-4 md:left-16 md:bottom-8 w-8 md:w-14 rounded-full z-20 bg-gray-700">
             <CircularRatingBar rating={rating}/>
           </div>
           
           {/* hover */}
-          {isHovered && <MovieHoverCard 
+          {/* {isHovered && <MovieHoverCard 
           title={title}
           posterPath={posterPath}
           vote={vote}
-          />}
+          />} */}
       </div>
     )
 }

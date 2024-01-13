@@ -1,12 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 
-//notification messages
-const addedToFavouritesMsg = () => toast("Added to Favourites");
-const alreadyInFavouritesMsg = () => toast("Already in Favourites");
-const addedToWatchListMsg = () => toast("Added to Watchlist");
-const alreadyInWatchListMsg = () => toast("Already to Watchlist");
-
 const movieSlice = createSlice({
     name : "movie",
     initialState : {
@@ -45,40 +39,49 @@ const movieSlice = createSlice({
 
         //add movie to favourites 
         addFavouriteMovie: (state, action) => {
-            let favourites = state?.favourites?.findIndex((movie) => movie.id === action.payload.id);
+            // Check if state.favourites is an array or initialize it as an empty array
+            const favouritesArr = Array.isArray(state.favourites) ? state.favourites : [];
 
-            if(favourites >=0 ) //already in favourites
-                alreadyInFavouritesMsg();
-            else //add to favourites
+            let movieIndex  = favouritesArr.findIndex((movie) => movie?.id === action.payload.id);
+
+            if(movieIndex  >=0 ) //movie is already in favourites
+                toast.info("Already in Favourites");
+            else
             {
-                state.watchList.push(action.payload);
-                addedToFavouritesMsg();
+                // Add the movie to favorites (creating a new state object)
+                state.favourites = [...favouritesArr, action.payload]
+                toast.success("Added to Favourites");
             }
         },
         
         //remove movie from favourites 
         removeFavouriteMovie : (state, action) => {
             state.favourites = state.favourites.filter((movie) => movie?.id !== action.payload)
+            toast.error("Movie removed from Favourites");
         },
 
         //add to watching list
         addWatchList : (state, action) => {
-            let find = state?.watchList?.findIndex(
-                (movie) => movie.id === action.payload.id
-            );
 
-            if(find >= 0) //already in watchlist
-                alreadyInWatchListMsg();
+            // Check if state.watchList is an array or initialize it as an empty array
+            const watchListArr = Array.isArray(state.watchList) ? state.watchList : [];
+
+            let movieIndex  = watchListArr.findIndex((movie) => movie?.id === action.payload.id);
+
+            if(movieIndex >= 0) //already in watchlist
+                toast.info("Already in Watchlist");
             else //add to watchlist
             {
-                state.watchList.push(action.payload);
-                addedToWatchListMsg();
+                // Add the movie to watchList (creating a new state object)
+                state.watchList = [...watchListArr, action.payload]
+                toast.success("Added to Watchlist");
             }
         },
 
         //remove movie from watchlist
         removeWatchList : (state, action) => {
             state.watchList = state.watchList.filter((movie) => movie?.id !== action.payload);
+            toast.error("Movie removed from Watchlist");
         },
     }
 })
