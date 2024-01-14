@@ -5,6 +5,8 @@ import { MdCancel } from 'react-icons/md';
 import MovieCard from "./MovieCard";
 import { removeFavouriteMovie } from '../utils/movieSlice';
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Favourites = () => {
   const favourites = useSelector((store) => store?.movies?.favourites);
@@ -55,6 +57,19 @@ const Favourites = () => {
           </div>
         ))}
       </div>
+      {/* alert message*/}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 };

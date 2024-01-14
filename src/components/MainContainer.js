@@ -6,7 +6,7 @@ import {useSelector} from "react-redux";
 const MainContainer = () => {
  //fetching data from redux store
  const movies = useSelector((store) => store.movies?.nowPlayingMovies);
-
+ 
  if(!movies) return; //return if there's no movies info
 
  const mainMovie = movies[0];//fetching first movie info
@@ -16,7 +16,7 @@ const MainContainer = () => {
 
   return (
     <div className="pt-[30%] bg-black md:pt-0">
-        <VideoTitle title={original_title} overview={overview}/>
+        <VideoTitle movieId={id} title={original_title} overview={overview}/>
         <VideoBackground movieId={id} widthScreen={"w-screen"}/>
     </div>
   )
