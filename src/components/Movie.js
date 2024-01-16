@@ -6,6 +6,7 @@ import useMovieDetails from '../utils/hooks/useMovieDetails';
 import useMovieTrailer from '../utils/hooks/useMovieTrailer';
 import { addPath } from '../utils/pathSlice';
 import { addMovieClicked } from '../utils/moviePageSlice';
+import MiddleContainer from './MiddleContainer';
 
 const Movie = () => {
   const {movieId} = useParams();//to fetch the movieId
@@ -32,7 +33,7 @@ const Movie = () => {
   return (
     <div className="">
       <TopContainer />
-      {/* <MiddleContainer /> */}
+      <MiddleContainer />
     </div>
   )
 }

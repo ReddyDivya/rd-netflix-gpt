@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { IMG_CDN_URL } from '../utils/constants';
 import { FaPlayCircle, FaRegStar } from "react-icons/fa";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { GiSelfLove } from "react-icons/gi";
 import { MdOutlineBookmarkAdd, MdCancel } from "react-icons/md";
 import Genre from './Genre';
@@ -20,7 +21,7 @@ const TopContainer = () => {
     
     const dispatch = useDispatch();
 
-    const date = details?.movieDetails?.release_date;
+    const year = new Date(details?.movieDetails?.release_date).getFullYear();
     const hours = Math.floor(details?.movieDetails?.runtime/60);
     const minutes = Math.floor(details?.movieDetails?.runtime%60);
 
@@ -79,7 +80,7 @@ const TopContainer = () => {
               {/* tagline */}
               <i className="font-light text-sm mt-2">{details.movieDetails?.tagline}</i>
               <div className=" flex py-2">
-                <h3>{date}</h3>
+                <h3>{year}</h3>
 
                 <h3 className="mx-2">{hours + "h " + minutes + "m"}</h3>
               </div>
@@ -103,7 +104,8 @@ const TopContainer = () => {
                   onClick={handleAddToFavourite}
                   className="md:mx-4 mx-1 px-2 py-2 transition hover:-translate-y-1 after:text-red-600"
                 >
-                  <GiSelfLove size={32}/>
+                  {/* <GiSelfLove size={32}/> */}
+                  <FavoriteBorderIcon fontSize="large"/>
                 </button>
                 
                 {/* save to watchlist */}
@@ -145,18 +147,18 @@ const TopContainer = () => {
         </div>
 
         {/* alert message*/}
-          <ToastContainer
-            position="top-right"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-          />
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
     </div>
   )
 }

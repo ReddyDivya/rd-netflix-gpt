@@ -19,7 +19,7 @@ const appStore = configureStore({
         media: mediaReducer,
         movieDetails: movieDetailsReducer,
         path:pathReducer,
-        review: reviewReducer,
+        reviews: reviewReducer,
     }
 })
 
