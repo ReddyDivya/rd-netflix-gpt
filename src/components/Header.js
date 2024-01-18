@@ -13,6 +13,8 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
+  const path = useSelector((store) => store.path.path);
+
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -39,8 +41,6 @@ const Header = () => {
       document.removeEventListener('click', handleOutsideClick);
     };
   }, []);
-
-
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -75,13 +75,13 @@ const Header = () => {
   };
 
   return (
-    <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between">
+    <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between gap-2">
       <img className="w-44 mx-auto md:mx-0" src={LOGO} alt="logo" />
       {user && (
         <div className="flex p-2 justify-between">
           {showGptSearch && (
             <select
-              className="p-2 m-2 bg-gray-900 text-white"
+              className="p-2 m-2 mr-[-40px] bg-gray-900 text-white"
               onChange={handleLanguageChange}
             >
               {SUPPORTED_LANGUAGES.map((lang) => (
@@ -103,12 +103,11 @@ const Header = () => {
           className="md:w-[100px] right-0 mx-[-1%] mt-1 absolute rounded-md z-30"
             onMouseEnter={() => setDropdownOpen(true)}
             ref={dropdownRef}>
-            {/* <img
+            {user?.photoURL ? <img
               className="hidden md:block w-12 h-12 rounded-full"
               alt="usericon"
               src={user?.photoURL}
-            /> */}
-            <FaUser className="text-white mt-2" style={{ fontSize: 30, cursor: 'pointer' }} />
+            /> : <FaUser className="text-white mt-2" style={{ fontSize: 30, cursor: 'pointer' }} />}
           </div>
           
           {/* dropdown for user-profile*/}

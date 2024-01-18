@@ -1,13 +1,13 @@
 import React from 'react'
 import MovieCard from './MovieCard';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
 
 const MovieList = ({title, movies, textColor}) => {
-  const showGptSearch  = useSelector((store) => store.gpt.showGptSearch);
-  const path = useSelector((store) => store.path.path);
+  // const showGptSearch  = useSelector((store) => store.gpt.showGptSearch);
+  // const path = useSelector((store) => store.path.path);
   
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   return (
     <div className="px-6">

@@ -42,21 +42,25 @@ const movieSlice = createSlice({
             // Check if state.favourites is an array or initialize it as an empty array
             const favouritesArr = Array.isArray(state.favourites) ? state.favourites : [];
 
-            let movieIndex  = favouritesArr.findIndex((movie) => movie?.id === action.payload.id);
+            let movieIndex  = favouritesArr.findIndex((movie) => movie?.id === action.payload?.id);
 
-            if(movieIndex  >=0 ) //movie is already in favourites
-                toast.info("Already in Favourites");
-            else
+            if(movieIndex  >= 0 ) //movie is already in favourites
             {
-                // Add the movie to favorites (creating a new state object)
-                state.favourites = [...favouritesArr, action.payload]
-                toast.success("Added to Favourites");
+                toast.info("Already in Favourites");
+                return state;
             }
+            
+            // Add the movie to favorites (creating a new state object)
+            const updatedFavourites = [...favouritesArr, action.payload];
+            toast.success("Added to Favourites");
+
+            // Return a new state object with updated favourites
+            return { ...state, favourites: updatedFavourites };
         },
         
         //remove movie from favourites 
         removeFavouriteMovie : (state, action) => {
-            state.favourites = state.favourites.filter((movie) => movie?.id !== action.payload)
+            state.favourites = state.favourites.filter((movie) => movie?.id !== action.payload);
             toast.error("Movie removed from Favourites");
         },
 

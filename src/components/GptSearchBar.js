@@ -5,11 +5,16 @@ import { addGPTMovieResults } from '../utils/gptSlice';
 import { API_OPTIONS } from '../utils/constants';
 import openai from '../utils/openai';
 import ErrorHandling from './ErrorHandling';
+import cinemaImg from "../assets/cinema.png";
 
 const GptSearchBar = () => {
-  const dispatch = useDispatch();
+  
   const langKey = useSelector((store) => store.config.lang);
   const searchText = useRef(null);
+  
+  const dispatch = useDispatch();
+  const gptMoviesList = useSelector((store) => store.gpt.movieResults);
+
 
   //search gpt suggested each and every movie in the TMDB
   const searchMovieTMDB = async (movie) => {
@@ -17,16 +22,14 @@ const GptSearchBar = () => {
     const data = await fetch( "https://api.themoviedb.org/3/search/movie?query=" +
     movie + "&include_adult=true&language=en-US&page=1", API_OPTIONS);
 
-    // console.log('data >>', data);
     const json = await data.json();
 
-    // console.log('json >>', json);
     return json.results;
   };//searchMovieTMDB
 
   const handleGptSearchClick = async () => {
     // Make an API call to GPT API and get Movie Results
-console.log(searchText.current.value );
+
     //We should give GPT a prompt
     const gptQuery =  "Act as a Movie Recommendation system and suggest some movies for the query : " +
     searchText.current.value +
@@ -43,8 +46,6 @@ console.log(searchText.current.value );
     {
         <ErrorHandling/>
     }
-
-    console.log(gptResults.choices?.[0]?.message?.content);
 
     //Bahubali, Billa, Darling, Bujjigadu, Sahoo
     const gptMovies = gptResults.choices?.[0]?.message?.content.split(",");
@@ -63,17 +64,32 @@ console.log(searchText.current.value );
   }//handleGptSearchClick
 
   return (
-    <div className="pt-[35%] md:pt-[10%] flex justify-center">
+    <>
+      <div className="pt-[35%] md:pt-[10%] flex justify-center">
         <form className="w-full md:w-1/2 bg-black grid grid-cols-12" onSubmit={(e) => e.preventDefault()}>
-          <input data-testid="languages" ref={searchText} type="text" className="p-3 m-4 col-span-9" placeholder={lang[langKey].gptSearchPlaceholder}/>
-          {/* <button className="col-span-3 m-4 py-2 px-1 bg-red-700 text-white rounded-lg"
+          <input
+            data-testid="languages"
+            ref={searchText}
+            type="text"
+            className="p-3 m-4 col-span-9"
+            placeholder={lang[langKey].gptSearchPlaceholder}
+          />
+          <button
+            className="col-span-3 m-4 py-2 px-1 bg-red-700 text-white rounded-lg"
             onClick={handleGptSearchClick}
           >
             {lang[langKey].search}
-          </button> */}
+          </button>
         </form>
-    </div>
-  )
+      </div>
+        {gptMoviesList === null && (
+          <div className="w-[200px] h-[330px] md:w-[300px] mt-20 py-24 md:py-10 relative top-28 left-1/2 translate-x-[-50%] translate-y-[-50%]">
+            {/* when no movies are fetch */}
+          </div>
+        )}
+    </>  
+
+  );
 }
 
 export default GptSearchBar

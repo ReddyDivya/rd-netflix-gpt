@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import {IMG_CDN_URL} from "../utils/constants";
 import CircularRatingBar from './CircularRatingBar';
-import MovieHoverCard from './MovieHoverCard';
-import { useDispatch, useSelector } from 'react-redux';
-import { removeFavouriteMovie } from '../utils/movieSlice';
+// import MovieHoverCard from './MovieHoverCard';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { removeFavouriteMovie } from '../utils/movieSlice';
 
 const MovieCard = ({title, movieId, date, rating, vote, posterPath, genre}) => {
   const [isHovered, setIsHovered] = useState(false);//hover on movie card
   
   // const path = useSelector((store) => store.path.path);//fetching path
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const removeFavourite = () => {
-    dispatch(removeFavouriteMovie(movieId));
-  }
+  // const removeFavourite = () => {
+  //   dispatch(removeFavouriteMovie(movieId));
+  // }
 
   if(!posterPath) return null;
 

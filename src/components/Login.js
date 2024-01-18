@@ -7,6 +7,7 @@ import { auth } from "../firebase";
 import { useNavigate } from 'react-router-dom';
 import {useDispatch} from "react-redux";
 import {addUser} from "../utils/userSlice";
+import Footer from './Footer';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -100,6 +101,7 @@ const Login = () => {
             <p onClick={toggleSignInForm}
             className="py-2 cursor-pointer">{isSignInForm ? "New to Netflix? Sign up Now" : "Already registered? Sign In Now."}</p>
         </form>
+        <Footer/>
     </div>
   )
 }

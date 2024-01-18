@@ -2,9 +2,8 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { IMG_CDN_URL } from '../utils/constants';
-import { FaPlayCircle, FaRegStar } from "react-icons/fa";
+import { FaPlayCircle} from "react-icons/fa";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { GiSelfLove } from "react-icons/gi";
 import { MdOutlineBookmarkAdd, MdCancel } from "react-icons/md";
 import Genre from './Genre';
 import CircularRatingBar from './CircularRatingBar';
@@ -12,7 +11,6 @@ import VideoBackground from './VideoBackground';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { addFavouriteMovie, addWatchList } from '../utils/movieSlice';
-import Header from './Header';
 
 const TopContainer = () => {
     const [toggle, setToggle] = useState(false);
@@ -27,7 +25,7 @@ const TopContainer = () => {
 
     //fetching movie trailer of the clicked movie
     const movieTrailer = useSelector((store) => store.movies?.trailerVideo);
-    const keys = movieTrailer?.key;
+    // const keys = movieTrailer?.key;
 
     //play the video
     const handlePlay = () => {
@@ -41,15 +39,16 @@ const TopContainer = () => {
 
     //add movie to favourites
     const handleAddToFavourite = () => {
-        dispatch(addFavouriteMovie(details?.movieDetails))
+      dispatch(addFavouriteMovie(details?.movieDetails))
     }
     
     //add movie to watchlist
     const handleAddToWatchList = () => {
-        dispatch(addWatchList(details?.movieDetails))
+      dispatch(addWatchList(details?.movieDetails))
     }
 
   return (
+
     <div>
         <div className="relative">
           <img
@@ -104,7 +103,6 @@ const TopContainer = () => {
                   onClick={handleAddToFavourite}
                   className="md:mx-4 mx-1 px-2 py-2 transition hover:-translate-y-1 after:text-red-600"
                 >
-                  {/* <GiSelfLove size={32}/> */}
                   <FavoriteBorderIcon fontSize="large"/>
                 </button>
                 
