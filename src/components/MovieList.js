@@ -3,7 +3,7 @@ import MovieCard from './MovieCard';
 import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
 
-const MovieList = ({title, movies, textColor, gradient, genre}) => {
+const MovieList = ({title, movies, textColor}) => {
   const showGptSearch  = useSelector((store) => store.gpt.showGptSearch);
   const path = useSelector((store) => store.path.path);
   

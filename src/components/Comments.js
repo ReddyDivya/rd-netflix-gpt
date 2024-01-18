@@ -17,7 +17,6 @@ const Comments = () => {
                     <p className="text-center text-2xl font-bold text-[#023047]">No Comments Yet</p>
                 </div>
             )}
-            
             {/* Reviews list */}
             {
                 reviews?.results?.map((review) => (<Review 

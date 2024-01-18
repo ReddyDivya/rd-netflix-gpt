@@ -5,6 +5,7 @@ import Browse from "./Browse";
 import Movie from './Movie';
 import Favourites from "./Favourites";
 import WatchList from "./WatchList";
+import Review from './Review';
 
 const Body = () => {
 

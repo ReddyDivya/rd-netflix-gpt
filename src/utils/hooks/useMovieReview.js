@@ -18,7 +18,7 @@ const useMovieReview = ({movieId}) => {
         );
 
         const json = await data.json();
-        dispatch(addReview(json));//add movie reviews to the redux
+        dispatch(addReview(json.results));//add movie reviews to the redux
     }
 
     useEffect(() => {

@@ -11,6 +11,7 @@ import GptSearch from './GptSearch';
 import Footer from './Footer';
 import { addPath } from '../utils/pathSlice';
 import { toggleGptSearchView } from '../utils/gptSlice';
+import MiddleContainer from './MiddleContainer';
 
 const Browse = () => {
   
