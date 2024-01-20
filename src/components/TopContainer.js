@@ -1,24 +1,29 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { IMG_CDN_URL } from '../utils/constants';
 import { FaPlayCircle} from "react-icons/fa";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { MdOutlineBookmarkAdd, MdCancel } from "react-icons/md";
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { MdOutlineBookmarkAdd, MdCancel, MdOutlineBookmarkRemove } from "react-icons/md";
 import Genre from './Genre';
 import CircularRatingBar from './CircularRatingBar';
 import VideoBackground from './VideoBackground';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { addFavouriteMovie, addWatchList } from '../utils/movieSlice';
+import { addFavouriteMovie, addWatchList, removeFavouriteMovie, removeWatchList } from '../utils/movieSlice';
 
 const TopContainer = () => {
-    const [toggle, setToggle] = useState(false);
+    const dispatch = useDispatch();  
+    const favourites = useSelector((store) => store?.movies?.favourites);
+    const watchList = useSelector((store) => store?.movies?.watchList);
     const movieId = useParams(); //fetching the movieId
     const details = useSelector((store) => store?.movieDetails);//fetching movie details from the redux store
     
-    const dispatch = useDispatch();
-
+    const [isFavourite, setFavourite] = useState(false);
+    const [isInWatchlist, setInWatchlist] = useState(false);
+    const [toggle, setToggle] = useState(false);
+    
     const year = new Date(details?.movieDetails?.release_date).getFullYear();
     const hours = Math.floor(details?.movieDetails?.runtime/60);
     const minutes = Math.floor(details?.movieDetails?.runtime%60);
@@ -39,14 +44,43 @@ const TopContainer = () => {
 
     //add movie to favourites
     const handleAddToFavourite = () => {
-      dispatch(addFavouriteMovie(details?.movieDetails))
-    }
+      setFavourite(!isFavourite);
+  
+      if (!isFavourite) {
+        dispatch(addFavouriteMovie(details?.movieDetails));
+      } else {
+        dispatch(removeFavouriteMovie(details?.movieDetails?.id));
+      }
+    };
     
     //add movie to watchlist
     const handleAddToWatchList = () => {
-      dispatch(addWatchList(details?.movieDetails))
+      setInWatchlist(!isInWatchlist);
+
+      if (!isInWatchlist) {
+        dispatch(addWatchList(details?.movieDetails));
+      } else {
+        dispatch(removeWatchList(details?.movieDetails?.id));
+      }
     }
 
+    useEffect(() => {
+
+      // Update isFavourite state when details change
+      setFavourite(
+        favourites && favourites.some((movie) => movie.id === details?.movieDetails?.id)
+      );
+  
+    }, [details, favourites]);
+
+    useEffect(() => {
+
+      setInWatchlist(
+        watchList && watchList.some((movie) => movie.id === details?.movieDetails?.id)
+      );
+  
+    }, [details, watchList]);
+  
   return (
 
     <div>
@@ -103,7 +137,12 @@ const TopContainer = () => {
                   onClick={handleAddToFavourite}
                   className="md:mx-4 mx-1 px-2 py-2 transition hover:-translate-y-1 after:text-red-600"
                 >
-                  <FavoriteBorderIcon fontSize="large"/>
+                { isFavourite ? (
+                    <FavoriteIcon key={details?.movieDetails?.id} fontSize="large" style={{ color: 'red', cursor: 'pointer' }} />
+                  ) : (
+                    <FavoriteIcon key={details?.movieDetails?.id} fontSize="large" style={{ color: 'gray', cursor: 'pointer' }} />
+                  )
+                }
                 </button>
                 
                 {/* save to watchlist */}
@@ -111,7 +150,11 @@ const TopContainer = () => {
                   onClick={handleAddToWatchList}
                   className="md:mx-4 mx-1 px-2 py-2  transition hover:-translate-y-1 after:text-red-600"
                 >
-                  <MdOutlineBookmarkAdd size={32}/>
+                  {isInWatchlist ? (
+                    <MdOutlineBookmarkRemove size={32} style={{ color: 'blue', cursor: 'pointer' }} />
+                  ) : (
+                    <MdOutlineBookmarkAdd size={32} style={{ color: 'gray', cursor: 'pointer' }} />
+                  )}
                 </button>
                 
                 <button

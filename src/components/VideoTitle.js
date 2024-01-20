@@ -11,7 +11,8 @@ const VideoTitle = ({movieId, title, overview}) => {
             <Link key={movieId} to={`/movie/${movieId}`}>
               <button className="bg-white text-black py-1 md:py-4 px-3 md:px-12 text-xl rounded-lg hover:bg-opacity-60"><FaPlay size={20}/></button>
             </Link>
-            <Link key={movieId} to={`/movie/${movieId}`}>
+            {/* <Link key={movieId} to={`/movie/${movieId}`}> */}
+            <Link>
               <button className="md:inline-block mx-2 bg-gray-500 text-white py-4 px-6 text-xl bg-opacity-30 flex flex-row justify-between h-14 rounded-lg">More Info</button>
             </Link>  
         </div>

@@ -41,7 +41,7 @@ const Favourites = () => {
             </button>
             <Link key={movie?.id} to={`/movie/${movie?.id}`}>
               <div>
-                <MovieCard key={movie?.id} 
+                <MovieCard 
                   title={movie?.title}
                   movieId={movie?.id}
                   date={movie?.release_date}
