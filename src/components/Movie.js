@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import TopContainer from './TopContainer'
+import React, { useEffect } from 'react'
+import MovieMainContainer from './MovieMainContainer'
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import useMovieDetails from '../utils/hooks/useMovieDetails';
 import useMovieTrailer from '../utils/hooks/useMovieTrailer';
 import { addPath } from '../utils/pathSlice';
 import { addMovieClicked } from '../utils/moviePageSlice';
-import MiddleContainer from './MiddleContainer';
+import MovieSecondaryContainer from './MovieSecondaryContainer';
 import Shimmer from './Shimmer';
 
 const Movie = () => {
@@ -15,9 +15,6 @@ const Movie = () => {
 
   //adding the clicked movie details to the redux
   useMovieDetails({movieId});
-
-  //fetching the clicked movie Id
-  const clickedMovieId = useSelector((store) => store?.movieDetails?.movieClicked);
   
   //fetching the movie details for the clicked movie
   const details = useSelector((store) => store?.movieDetails);
@@ -35,8 +32,8 @@ const Movie = () => {
     <Shimmer />
   ) : (
     <div className="">
-      <TopContainer />
-      <MiddleContainer />
+      <MovieMainContainer />
+      <MovieSecondaryContainer />
     </div>
   );
 }

@@ -12,7 +12,7 @@ import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { addFavouriteMovie, addWatchList, removeFavouriteMovie, removeWatchList } from '../utils/movieSlice';
 
-const TopContainer = () => {
+const MovieMainContainer = () => {
     const dispatch = useDispatch();  
     const favourites = useSelector((store) => store?.movies?.favourites);
     const watchList = useSelector((store) => store?.movies?.watchList);
@@ -37,8 +37,9 @@ const TopContainer = () => {
     };
 
     //close the video
-    const handleClose = () => {
-        setToggle(false);
+    const handleCloseTrailer = () => {
+      setToggle(false);
+      alert(toggle)  
     }
 
     //add movie to favourites
@@ -174,16 +175,24 @@ const TopContainer = () => {
             </div>
           </div>
 
-          {toggle && (<>
+          {toggle && (
+          <>
             <div className="w-full h-screen absolute flex items-start justify-start">
-                <div className="w-2/2 aspect-video px-2 md:w-[50%] z-30 top-[-75%] md:top-[-45%] right-[-60%] md:right-0 md:left-[35%] -translate-x-1/2 -translate-y-1/2 absolute">
-                  <VideoBackground movieId={movieId} widthScreen={"w-8/12"} />
-                </div>
-                <button onClick={handleClose} className="absolute text-white top-[-94%] md:top-[-87%] right-[20%] md:right-[19%]">
-                    <MdCancel size={32} className="cursor-pointer" />
-                </button>
-              </div>{" "}
-          </>)}
+              <div 
+              // className="w-2/2 aspect-video px-2 md:w-[50%] z-30 top-[-75%] md:top-[-45%] right-[-60%] md:right-0 md:left-[35%] -translate-x-1/2 -translate-y-1/2 absolute">
+               className="w-2/2 md:w-[50%] aspect-video px-2  z-10 top-[-75%] md:top-[-45%] right-[-60%] md:right-0 md:left-[35%] -translate-x-1/2 -translate-y-1/2 absolute" >
+                <VideoBackground movieId={movieId} widthScreen={"w-8/12"} />
+              </div>
+              <button
+                onClick={handleCloseTrailer}
+                className="absolute text-white top-[-94%] md:top-[-87%] right-[20%] md:right-[19%]"
+                // className="absolute text-white top-[-94%] md:top-[-85%] right-[20%] md:right-[18%]"
+              >
+                <MdCancel size={32} className="cursor-pointer" />
+              </button>
+            </div>{" "}
+          </>
+        )}
         </div>
 
         {/* alert message*/}
@@ -203,4 +212,4 @@ const TopContainer = () => {
   )
 }
 
-export default TopContainer
+export default MovieMainContainer

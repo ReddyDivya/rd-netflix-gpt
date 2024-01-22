@@ -9,7 +9,7 @@ import useSimilarMovies from '../utils/hooks/useSimilarMovies';
 import MovieList from './MovieList';
 import useRecommendedMovies from '../utils/hooks/useRecommendedMovies';
 
-const MiddleContainer = () => {
+const MovieSecondaryContainer = () => {
   const movieId = useParams();
   
   useMovieCredits(movieId);//add movie credits to the redux
@@ -93,4 +93,4 @@ const MiddleContainer = () => {
   )
 }
 
-export default MiddleContainer
+export default MovieSecondaryContainer
