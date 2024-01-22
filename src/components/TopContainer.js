@@ -3,13 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { IMG_CDN_URL } from '../utils/constants';
 import { FaPlayCircle} from "react-icons/fa";
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { MdOutlineBookmarkAdd, MdCancel, MdOutlineBookmarkRemove } from "react-icons/md";
 import Genre from './Genre';
 import CircularRatingBar from './CircularRatingBar';
 import VideoBackground from './VideoBackground';
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { addFavouriteMovie, addWatchList, removeFavouriteMovie, removeWatchList } from '../utils/movieSlice';
 
@@ -33,7 +32,7 @@ const TopContainer = () => {
     // const keys = movieTrailer?.key;
 
     //play the video
-    const handlePlay = () => {
+    const handleTrailerPlay = () => {
         setToggle(!toggle);
     };
 
@@ -86,16 +85,16 @@ const TopContainer = () => {
     <div>
         <div className="relative">
           <img
-            className=" h-[250px] md:w-full md:h-screen absolute object-cover -z-10"
+            className="h-[400px] md:w-full md:h-screen absolute object-cover -z-10"
             alt="backdropImg"
             src={IMG_CDN_URL + details.movieDetails?.backdrop_path}
           />
-          <div className="w-full h-[250px] md:w-full md:h-screen absolute -z-10 bg-black md:bg-opacity-80 bg-opacity-60"></div>
+          <div className="w-full h-[400px] md:w-full md:h-screen absolute -z-10 bg-black md:bg-opacity-80 bg-opacity-70"></div>
           
           <div className="md:w-full md:h-full md:flex md:flex-row flex flex-col items-center">            
           
             {/* left - Movie poster */}
-            <div className="w-28 relative top-16 md:top-0 md:bottom-6 left-10 md:left-0 md:w-4/12 md:p-20 flex md:pt-[130px]">
+            <div className="mt-[100px] w-28 relative top-16 md:top-0 md:bottom-6 left-10 md:left-0 md:w-4/12 md:p-20 flex md:pt-[130px]">
               <img
                 className="mx-auto rounded-lg h-40 md:h-64"
                 alt="moviePoster"
@@ -103,10 +102,10 @@ const TopContainer = () => {
               />
             </div>
 
-            <div className="w-full min-h-[500px] bg-[#0a0908] pt-5 md:bg-transparent relative top-20 md:top-20 flex flex-col md:flex md:flex-col justify-start items-start text-white">
+            <div className="w-full min-h-[500px] bg-[#0a0908] pt-5 md:bg-transparent relative top-20 m-3 p-2 md:top-20 flex flex-col md:flex md:flex-col justify-start items-start text-white">
               
               {/* Title */}
-              <h1 className="px-4 md:px-0 text-3xl font-semibold ">
+              <h1 className="px-1 md:px-0 text-3xl font-semibold ">
                 {details.movieDetails?.original_title}
               </h1>
 
@@ -135,7 +134,7 @@ const TopContainer = () => {
                 {/* add to favourite */} 
                 <button
                   onClick={handleAddToFavourite}
-                  className="md:mx-4 mx-1 px-2 py-2 transition hover:-translate-y-1 after:text-red-600"
+                  className="md:mx-2 mx-1 px-2 py-2 transition hover:-translate-y-1 after:text-red-600"
                 >
                 { isFavourite ? (
                     <FavoriteIcon key={details?.movieDetails?.id} fontSize="large" style={{ color: 'red', cursor: 'pointer' }} />
@@ -148,7 +147,7 @@ const TopContainer = () => {
                 {/* save to watchlist */}
                 <button
                   onClick={handleAddToWatchList}
-                  className="md:mx-4 mx-1 px-2 py-2  transition hover:-translate-y-1 after:text-red-600"
+                  className="md:mx-2 mx-1 px-2 py-2 transition hover:-translate-y-1 after:text-red-600"
                 >
                   {isInWatchlist ? (
                     <MdOutlineBookmarkRemove size={32} style={{ color: 'blue', cursor: 'pointer' }} />
@@ -159,11 +158,11 @@ const TopContainer = () => {
                 
                 <button
                   onClick={() => {
-                    handlePlay();
+                    handleTrailerPlay();
                   }}
-                  className="text-xl mx-1 px-2 py-2  transition hover:-translate-y-1 nd:px-2 text-white rounded-lg"
+                  className="text-xl mx-1 px-2 py-2 transition hover:-translate-y-1 md:px-2 text-white rounded-lg"
                 >
-                  <FaPlayCircle size={32}/> Play
+                  <FaPlayCircle size={32}/>
                 </button>
               </div>
 
@@ -177,10 +176,10 @@ const TopContainer = () => {
 
           {toggle && (<>
             <div className="w-full h-screen absolute flex items-start justify-start">
-                <div className="w-full aspect-video px-2 md:w-[50%] z-30 top-[45%] md:top-[-23%] left-[35%] -translate-x-1/2 -translate-y-1/2 absolute">
+                <div className="w-2/2 aspect-video px-2 md:w-[50%] z-30 top-[-75%] md:top-[-45%] right-[-60%] md:right-0 md:left-[35%] -translate-x-1/2 -translate-y-1/2 absolute">
                   <VideoBackground movieId={movieId} widthScreen={"w-8/12"} />
                 </div>
-                <button onClick={handleClose} className="absolute text-white md:top-[-65%] md:right-[17%]">
+                <button onClick={handleClose} className="absolute text-white top-[-94%] md:top-[-87%] right-[20%] md:right-[19%]">
                     <MdCancel size={32} className="cursor-pointer" />
                 </button>
               </div>{" "}

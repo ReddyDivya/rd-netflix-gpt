@@ -18,15 +18,15 @@ const Body = () => {
         element: <Login />,
       },
       {
-        path: "/",
+        path: "/app",
         element: <App />,
         children: [
-          { path: "browse", element: <Browse /> },
+          { path: "gptSearch", element: <GptSearch /> },
           {
             path: "movie/:movieId",
             element: <Movie />,
           },
-          { path: "gptSearch", element: <GptSearch /> },
+          { path: "browse", element: <Browse /> },
           { path: "review", element: <Comments /> },
           { path: "favourite", element: <Favourites /> },
           { path: "watchlist", element: <WatchList /> },

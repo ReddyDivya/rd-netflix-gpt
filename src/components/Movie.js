@@ -7,6 +7,7 @@ import useMovieTrailer from '../utils/hooks/useMovieTrailer';
 import { addPath } from '../utils/pathSlice';
 import { addMovieClicked } from '../utils/moviePageSlice';
 import MiddleContainer from './MiddleContainer';
+import Shimmer from './Shimmer';
 
 const Movie = () => {
   const {movieId} = useParams();//to fetch the movieId
@@ -30,12 +31,14 @@ const Movie = () => {
     dispatch(addMovieClicked(pathname));//adding clicked movie path to redux store
   }, [movieId]);
 
-  return (
+  return details.movieDetails === null ? (
+    <Shimmer />
+  ) : (
     <div className="">
       <TopContainer />
       <MiddleContainer />
     </div>
-  )
+  );
 }
 
 export default Movie

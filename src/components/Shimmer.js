@@ -3,7 +3,7 @@ import React from "react";
 
 const Shimmer = () => {
   return (
-    <div className="w-full min-h-screen bg-black md:flex md:items-center md:justify-center">
+    <div className="w-4/4 md:w-full min-h-screen bg-black md:flex md:items-center md:justify-center">
       <Box sx={{ paddingLeft: { xs: 10 } }}>
         <Skeleton
           sx={{

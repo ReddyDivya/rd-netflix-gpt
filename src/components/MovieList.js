@@ -13,7 +13,7 @@ const MovieList = ({title, movies, textColor}) => {
     <div className="px-6">
         <h1 className={`md:text-xl font-bold mt-2 pt-4 pb-2 ${textColor}`}>{title}</h1>
         <div className="flex overflow-x-scroll no-scrollbar">
-            <div className="flex">
+            <div className="flex flex-wrap">
                 {
                     movies?.map((movie) => (<Link key={movie?.id} to={`/movie/${movie?.id}`}>
                     <div>

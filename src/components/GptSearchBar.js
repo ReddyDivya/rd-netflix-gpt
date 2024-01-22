@@ -5,7 +5,6 @@ import { addGPTMovieResults } from '../utils/gptSlice';
 import { API_OPTIONS } from '../utils/constants';
 import openai from '../utils/openai';
 import ErrorHandling from './ErrorHandling';
-import cinemaImg from "../assets/cinema.png";
 
 const GptSearchBar = () => {
   
@@ -71,11 +70,11 @@ const GptSearchBar = () => {
             data-testid="languages"
             ref={searchText}
             type="text"
-            className="p-3 m-4 col-span-9"
+            className="p-1 text-xs md:text-base md:p-3 m-4 col-span-8 md:col-span-9"
             placeholder={lang[langKey].gptSearchPlaceholder}
           />
           <button
-            className="col-span-3 m-4 py-2 px-1 bg-red-700 text-white rounded-lg"
+            className="col-span-3 m-4 py-2 px-1 text-xs md:text-base ml-0 bg-red-700 text-white rounded-lg"
             onClick={handleGptSearchClick}
           >
             {lang[langKey].search}
