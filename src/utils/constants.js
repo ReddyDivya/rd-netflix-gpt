@@ -22,7 +22,7 @@ export const API_OPTIONS = {
 };
 
 // export const OPENAI_KEY = process.env.REACT_APP_OPENAI_KEY;
-export const OPENAI_KEY = ""
+export const OPENAI_KEY = 
 
 export const SUPPORTED_LANGUAGES = [
   {identifier : "en", name: "English"},

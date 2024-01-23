@@ -7,14 +7,8 @@ const VideoBackground = ({movieId, widthScreen}) => {
  //fetching trailer if it exists in the redux store
  const trailerVideo = useSelector((store) => store.movies?.trailerVideo);
 
- //adding or fetching the movie trailer to or from the redux
- useMovieTrailer({movieId});
-
-if(!trailerVideo)
-{
-  alert("No trailer available");
-  return false;
-}
+//adding or fetching the movie trailer to or from the redux
+useMovieTrailer({movieId});
 
  return (
     <div className="w-screen">
