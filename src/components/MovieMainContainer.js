@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { FaPlayCircle} from "react-icons/fa";
 import { MdOutlineBookmarkAdd, MdCancel, MdOutlineBookmarkRemove } from "react-icons/md";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { IMG_CDN_URL } from '../utils/constants';
@@ -11,6 +11,7 @@ import Genre from './Genre';
 import CircularRatingBar from './CircularRatingBar';
 import VideoBackground from './VideoBackground';
 import { addFavouriteMovie, addWatchList, removeFavouriteMovie, removeWatchList } from '../utils/slices/movieSlice';
+import useMovieTrailer from '../utils/hooks/useMovieTrailer';
 // import {VideoBackground, CircularRatingBar, Genre} from './index';
 // import { addFavouriteMovie, addWatchList, removeFavouriteMovie, removeWatchList } from '../utils/slices/movieSlice';
 
@@ -29,9 +30,13 @@ const MovieMainContainer = () => {
     const hours = Math.floor(details?.movieDetails?.runtime/60);
     const minutes = Math.floor(details?.movieDetails?.runtime%60);
 
+    //fetching trailer if it exists in the redux store
+    const trailerVideo = useSelector((store) => store.movies?.trailerVideo);
+
     //play the trailer
     const handleTrailerPlay = () => {
         setToggle(!toggle);
+        !trailerVideo && toast.error("No trailer available");
     };
 
     //close the trailer
@@ -171,8 +176,8 @@ const MovieMainContainer = () => {
             </div>
           </div>
 
-          {/* trailer video */}
-          {toggle && (
+          {/* display trailer video */}
+          {(toggle && trailerVideo) && (
           <div className="w-full h-screen fixed top-0 left-0 right-0 md:right-40 flex items-center justify-center bg-black bg-opacity-75 z-50">
             <div className="w-8/12 md:w-[50%] relative right-10 md:right-20">
               <button
@@ -187,7 +192,6 @@ const MovieMainContainer = () => {
             </div>
           </div>
         )}
-
         </div>
 
         {/* alert message*/}
