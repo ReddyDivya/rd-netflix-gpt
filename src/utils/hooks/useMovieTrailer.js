@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { API_OPTIONS } from '../constants';
-import { addTrailerVideo } from '../movieSlice';
+import { addTrailerVideo } from '../slices/movieSlice';
 
 //this is to add movie trailer to the redux store by fetching it through the api
 const useMovieTrailer = ({movieId}) => {

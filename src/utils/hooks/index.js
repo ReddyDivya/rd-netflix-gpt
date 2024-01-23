@@ -1,0 +1,10 @@
+export {default as useMovieCredits} from "./useMovieCredits";
+export {default as useMovieDetails} from "./useMovieDetails";
+export {default as useMovieReview} from "./useMovieReview";
+export {default as useMovieTrailer} from "./useMovieTrailer";
+export {default as useNowPlayingMovies} from "./useNowPlayingMovies";
+export {default as usePopularMovies} from "./usePopularMovies";
+export {default as useRecommendedMovies} from "./useRecommendedMovies";
+export {default as useSimilarMovies} from "./useSimilarMovies";
+export {default as useTopRatedMovies} from "./useTopRatedMovies";
+export {default as useUpComingMovies} from "./useUpComingMovies";

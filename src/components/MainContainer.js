@@ -1,7 +1,8 @@
 import React from 'react';
+import {useSelector} from "react-redux";
 import VideoBackground from './VideoBackground';
 import VideoTitle from './VideoTitle';
-import {useSelector} from "react-redux";
+// import {VideoTitle, VideoBackground} from './index';
 
 const MainContainer = () => {
  //fetching data from redux store

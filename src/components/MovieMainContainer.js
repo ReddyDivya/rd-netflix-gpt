@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { IMG_CDN_URL } from '../utils/constants';
 import { FaPlayCircle} from "react-icons/fa";
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import { MdOutlineBookmarkAdd, MdCancel, MdOutlineBookmarkRemove } from "react-icons/md";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { IMG_CDN_URL } from '../utils/constants';
 import Genre from './Genre';
 import CircularRatingBar from './CircularRatingBar';
 import VideoBackground from './VideoBackground';
-import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-import { addFavouriteMovie, addWatchList, removeFavouriteMovie, removeWatchList } from '../utils/movieSlice';
+import { addFavouriteMovie, addWatchList, removeFavouriteMovie, removeWatchList } from '../utils/slices/movieSlice';
+// import {VideoBackground, CircularRatingBar, Genre} from './index';
+// import { addFavouriteMovie, addWatchList, removeFavouriteMovie, removeWatchList } from '../utils/slices/movieSlice';
 
 const MovieMainContainer = () => {
     const dispatch = useDispatch();  

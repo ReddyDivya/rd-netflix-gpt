@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { API_OPTIONS } from '../constants';
-import { addMovieDetails } from '../moviePageSlice';
+import { addMovieDetails } from '../slices/moviePageSlice';
 
 //this is to get movie details from the redux store
 const useMovieDetails = ({movieId}) => {

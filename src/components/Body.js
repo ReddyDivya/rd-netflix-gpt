@@ -1,5 +1,6 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import App from '../App';
 import Login from "./Login";
 import Browse from "./Browse";
 import Movie from './Movie';
@@ -7,7 +8,7 @@ import Favourites from "./Favourites";
 import WatchList from "./WatchList";
 import GptSearch from './GptSearch';
 import Comments from "./Comments";
-import App from '../App';
+// import {Login, Browse, Movie, Favourites, WatchList, GptSearch, Comments} from "./index";
 
 const Body = () => {
 

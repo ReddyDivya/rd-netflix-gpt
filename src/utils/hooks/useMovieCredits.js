@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { API_OPTIONS } from "../constants";
-import { addCast } from "../creditsSlice";
+import { addCast } from "../slices/creditsSlice";
 
 //movie credits
 const useMovieCredits = ({movieId}) => {

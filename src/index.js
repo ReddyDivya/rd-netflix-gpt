@@ -9,7 +9,7 @@ import Movie from "./components/Movie";
 import Comments from "./components/Comments";
 import Login from "./components/Login";
 import { Provider } from "react-redux";
-import appStore from "./utils/appStore";
+import appStore from "./utils/slices/appStore";
 import Favourites from "./components/Favourites";
 import WatchList from "./components/WatchList";
 import GptSearch from "./components/GptSearch";

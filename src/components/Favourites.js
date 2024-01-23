@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { addPath } from '../utils/pathSlice';
-import { MdCancel } from 'react-icons/md';
-import MovieCard from "./MovieCard";
-import { removeFavouriteMovie } from '../utils/movieSlice';
 import { Link } from 'react-router-dom';
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { MdCancel } from 'react-icons/md';
 import cinemaImg from "../assets/cinema.png";
+import { removeFavouriteMovie } from '../utils/slices/movieSlice';
+import { addPath } from '../utils/slices/pathSlice'; 
+import MovieCard from "./MovieCard";
+// import {MovieCard} from "./index";
 
 const Favourites = () => {
   const favourites = useSelector((store) => store?.movies?.favourites); //fetching favourites

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {Avatar, Rating} from "@mui/material";
-import { deepOrange, deepPurple } from '@mui/material/colors';
+import { deepOrange } from '@mui/material/colors';
 
 const Review = ({id, username, rating, date, content}) => {
   let postDate = new Date(date);
@@ -37,7 +37,7 @@ const Review = ({id, username, rating, date, content}) => {
         <div className="flex items-start">
           <div className="flex items-center">
             {/* username icon */}
-            <Avatar sx={{ bgcolor: deepPurple[500] }}>{username.at(0)}</Avatar>
+            <Avatar sx={{ bgcolor: deepOrange[500] }}>{username.at(0)}</Avatar>
             <h3 className="text-lg font-semibold ml-2">{username}</h3>
             <div className="ml-4">
               {/* rating */}

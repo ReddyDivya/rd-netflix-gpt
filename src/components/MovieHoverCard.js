@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { IMG_CDN_URL } from '../utils/constants';
 import { FaCirclePlus } from "react-icons/fa6";
 import { SlLike } from "react-icons/sl";

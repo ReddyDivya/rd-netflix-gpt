@@ -1,13 +1,14 @@
-import React, {useState, useRef} from 'react'
-import Header from "./Header";
-import { BG_URL, USER_AVATAR } from "../utils/constants";
-import {checkValidData} from "../utils/validate";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth } from "../firebase";
+import React, {useState, useRef} from 'react';
 import { useNavigate } from 'react-router-dom';
 import {useDispatch} from "react-redux";
-import {addUser} from "../utils/userSlice";
+import { auth } from "../firebase";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { BG_URL } from "../utils/constants";
+import {checkValidData} from "../utils/validate";
+import { addUser } from '../utils/slices/userSlice'; 
+import Header from "./Header";
 import Footer from './Footer';
+// import {Header, Footer} from "./index.js";
 
 const Login = () => {
   const dispatch = useDispatch();

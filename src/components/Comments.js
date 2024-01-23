@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import Review from './Review';
+// import {Review} from "./index";
 
 const Comments = () => {
   const reviews = useSelector((store) => store?.reviews?.review);

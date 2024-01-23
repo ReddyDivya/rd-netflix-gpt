@@ -1,10 +1,11 @@
 import React, { useRef } from 'react'
-import lang from "../utils/languageConstants";
 import { useDispatch, useSelector } from 'react-redux';
-import { addGPTMovieResults } from '../utils/gptSlice';
+import lang from "../utils/languageConstants";
 import { API_OPTIONS } from '../utils/constants';
+import { addGPTMovieResults } from '../utils/slices/gptSlice'; 
 import openai from '../utils/openai';
 import ErrorHandling from './ErrorHandling';
+// import {ErrorHandling} from './index';
 
 const GptSearchBar = () => {
   

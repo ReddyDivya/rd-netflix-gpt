@@ -1,4 +1,7 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleGptSearchView } from '../utils/slices/gptSlice';
+import { addPath } from '../utils/slices/pathSlice';
 import Header from './Header';
 import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
@@ -6,12 +9,10 @@ import useNowPlayingMovies from "../utils/hooks/useNowPlayingMovies";
 import usePopularMovies from '../utils/hooks/usePopularMovies';
 import useTopRatedMovies from '../utils/hooks/useTopRatedMovies';
 import useUpComingMovies from '../utils/hooks/useUpComingMovies';
-import { useDispatch, useSelector } from 'react-redux';
 import GptSearch from './GptSearch';
 import Footer from './Footer';
-import { addPath } from '../utils/pathSlice';
-import { toggleGptSearchView } from '../utils/gptSlice';
-import MovieSecondaryContainer from './MovieSecondaryContainer';
+// import { Header, Footer, GptSearch, MainContainer, SecondaryContainer } from "./index";
+// import {usePopularMovies, useNowPlayingMovies, useTopRatedMovies, useUpComingMovies} from "../utils/hooks/index";
 
 const Browse = () => {
   

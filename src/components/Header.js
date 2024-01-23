@@ -2,13 +2,12 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { FaFilm, FaHeart, FaHome, FaSignOutAlt, FaUser, FaUserCircle } from "react-icons/fa";
 import { LOGO, SUPPORTED_LANGUAGES } from "../utils/constants";
 import {auth} from "../firebase";
-import { addUser, removeUser } from "../utils/userSlice";
-import { toggleGptSearchView } from "../utils/gptSlice";
-import { changeLanguage } from "../utils/configSlice";
-import { FaFilm, FaHeart, FaHome, FaSignOutAlt, FaUser, FaUserCircle } from "react-icons/fa";
-
+import { addUser, removeUser } from "../utils/slices/userSlice";
+import { changeLanguage } from "../utils/slices/configSlice";
+import { toggleGptSearchView } from "../utils/slices/gptSlice"; 
 
 const Header = () => {
   const dispatch = useDispatch();

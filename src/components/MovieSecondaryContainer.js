@@ -1,13 +1,16 @@
-import React from 'react'
-import useMovieCredits from '../utils/hooks/useMovieCredits'
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import useMovieCredits from '../utils/hooks/useMovieCredits'
 import MovieCastCard from './MovieCastCard';
 import useMovieReview from '../utils/hooks/useMovieReview';
 import Review from "./Review";
 import useSimilarMovies from '../utils/hooks/useSimilarMovies';
 import MovieList from './MovieList';
 import useRecommendedMovies from '../utils/hooks/useRecommendedMovies';
+// import {useMovieReview, useSimilarMovies, useMovieCredits} from '../utils/hooks/index';
+// import {MovieList, Review, MovieCastCard} from './index';
+// import useRecommendedMovies from '../utils/hooks/useRecommendedMovies';
 
 const MovieSecondaryContainer = () => {
   const movieId = useParams();

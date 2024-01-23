@@ -1,6 +1,7 @@
-import React from 'react'
+import React from 'react';
 import { useSelector } from 'react-redux';
 import useMovieTrailer from '../utils/hooks/useMovieTrailer';
+// import {useMovieTrailer} from '../utils/hooks/index';
 
 const VideoBackground = ({movieId, widthScreen}) => {
  //fetching trailer if it exists in the redux store

@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react'
-import MovieMainContainer from './MovieMainContainer'
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { addPath } from '../utils/slices/pathSlice';
+import { addMovieClicked } from '../utils/slices/moviePageSlice';
+import MovieMainContainer from './MovieMainContainer'
 import useMovieDetails from '../utils/hooks/useMovieDetails';
 import useMovieTrailer from '../utils/hooks/useMovieTrailer';
-import { addPath } from '../utils/pathSlice';
-import { addMovieClicked } from '../utils/moviePageSlice';
 import MovieSecondaryContainer from './MovieSecondaryContainer';
 import Shimmer from './Shimmer';
+// import {useMovieTrailer, useMovieDetails} from '../utils/hooks/index';
+// import {MovieMainContainer, MovieSecondaryContainer, Shimmer} from './index'
 
 const Movie = () => {
   const {movieId} = useParams();//to fetch the movieId

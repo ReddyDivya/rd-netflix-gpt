@@ -1,12 +1,12 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
 import { BG_URL } from '../utils/constants'
+import { addPath } from '../utils/slices/pathSlice'; 
 import GptSearchBar from "./GptSearchBar";
 import GptMovieSuggestions from './GptMovieSuggestions';
-import { useDispatch } from 'react-redux';
-import { addPath } from '../utils/pathSlice';
+// import {GptMovieSuggestions, GptSearchBar} from './index';
 
 const GptSearch = () => {
-
   const dispatch = useDispatch();
   dispatch(addPath(window.location.pathname));
 

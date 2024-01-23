@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addReview } from "../reviewSlice";
+import { addReview } from "../slices/reviewSlice";
 import { API_OPTIONS } from "../constants";
-
 
 const useMovieReview = ({movieId}) => {
     const dispatch = useDispatch();

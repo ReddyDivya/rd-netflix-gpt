@@ -1,7 +1,7 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import appStore from "../../utils/appStore";
+import appStore from "../../utils/slices/appStore";
 import "@testing-library/jest-dom";
 import Login from "../Login";
 

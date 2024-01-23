@@ -1,8 +1,7 @@
 import React from 'react'
-import Avatar from "../assets/avatar.png";
 import { IMG_CDN_URL, CAST_AVATAR } from '../utils/constants';
 
-const CastCard = ({img_path, name, character}) => {console.log('img>> '+ img_path)
+const CastCard = ({img_path, name, character}) => {
   return (
     <div className="w-32 md:w-44 text-black m-3 shadow-lg rounded-xl">
         <div className="w-[100px] md:w-[120px]">
