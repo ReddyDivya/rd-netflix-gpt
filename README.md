@@ -1,7 +1,17 @@
 # Netflix GPT
 
-Netflix GPT with OpenAI suggests movies through interactive prompts. Enhance your movie recommendations with dynamic conversations, creating a personalized and engaging streaming experience like never before.
+I developed Netflix-GPT, leveraging OpenAI for interactive movie suggestions. Users can log in via Firebase, access features such as movie details, and trailers, and manage favorites and watchlists across the web and mobile.
 
+## Demo
+
+### Web View
+https://github.com/ReddyDivya/rd-netflix-gpt/assets/34181144/d23e780e-45bf-4ebe-b1b9-e0b51d5fdcdc
+
+### Mobile View
+
+https://github.com/ReddyDivya/rd-netflix-gpt/assets/34181144/c4ec684c-934a-4bbd-a6dc-ce3f0b2396bd
+
+---
 
 - Create React App
 - Configured TailwindCSS
