@@ -7,7 +7,8 @@ import {auth} from "../firebase";
 import { addUser, removeUser } from "../utils/userSlice";
 import { toggleGptSearchView } from "../utils/gptSlice";
 import { changeLanguage } from "../utils/configSlice";
-import { FaFilm, FaHeart, FaHome, FaSignOutAlt, FaUser } from "react-icons/fa";
+import { FaFilm, FaHeart, FaHome, FaSignOutAlt, FaUser, FaUserCircle } from "react-icons/fa";
+
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -120,7 +121,7 @@ const Header = () => {
               className="md:block w-12 h-12 rounded-full"
               alt="usericon"
               src={user?.photoURL}
-            /> : <FaUser className="text-white mt-2" style={{ fontSize: 30, cursor: 'pointer' }} />}
+            /> : <FaUserCircle className="text-white mt-2" style={{ fontSize: 30, cursor: 'pointer' }} />}
           </div>
           
           {/* dropdown for user-profile*/}
@@ -132,6 +133,12 @@ const Header = () => {
                   aria-orientation="vertical"
                   aria-labelledby="options-menu"
                 >
+                  <button className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 w-full text-left"
+                      role="menuitem"
+                    >
+                      <FaUser className="inline mr-2" /> {user?.displayName}
+                      
+                  </button>
                   <Link to="/browse">
                     <button className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 w-full text-left"
                       role="menuitem"

@@ -27,19 +27,14 @@ const MovieMainContainer = () => {
     const hours = Math.floor(details?.movieDetails?.runtime/60);
     const minutes = Math.floor(details?.movieDetails?.runtime%60);
 
-    //fetching movie trailer of the clicked movie
-    const movieTrailer = useSelector((store) => store.movies?.trailerVideo);
-    // const keys = movieTrailer?.key;
-
-    //play the video
+    //play the trailer
     const handleTrailerPlay = () => {
         setToggle(!toggle);
     };
 
-    //close the video
+    //close the trailer
     const handleCloseTrailer = () => {
       setToggle(false);
-      alert(toggle)  
     }
 
     //add movie to favourites
@@ -64,15 +59,14 @@ const MovieMainContainer = () => {
       }
     }
 
+    // Update isFavourite state when details change
     useEffect(() => {
-
-      // Update isFavourite state when details change
       setFavourite(
         favourites && favourites.some((movie) => movie.id === details?.movieDetails?.id)
       );
-  
     }, [details, favourites]);
 
+    // Update isInWatchlist state when details change
     useEffect(() => {
 
       setInWatchlist(
@@ -175,24 +169,23 @@ const MovieMainContainer = () => {
             </div>
           </div>
 
+          {/* trailer video */}
           {toggle && (
-          <>
-            <div className="w-full h-screen absolute flex items-start justify-start">
-              <div 
-              // className="w-2/2 aspect-video px-2 md:w-[50%] z-30 top-[-75%] md:top-[-45%] right-[-60%] md:right-0 md:left-[35%] -translate-x-1/2 -translate-y-1/2 absolute">
-               className="w-2/2 md:w-[50%] aspect-video px-2  z-10 top-[-75%] md:top-[-45%] right-[-60%] md:right-0 md:left-[35%] -translate-x-1/2 -translate-y-1/2 absolute" >
-                <VideoBackground movieId={movieId} widthScreen={"w-8/12"} />
-              </div>
+          <div className="w-full h-screen fixed top-0 left-0 right-0 md:right-40 flex items-center justify-center bg-black bg-opacity-75 z-50">
+            <div className="w-8/12 md:w-[50%] relative right-10 md:right-20">
               <button
                 onClick={handleCloseTrailer}
-                className="absolute text-white top-[-94%] md:top-[-87%] right-[20%] md:right-[19%]"
-                // className="absolute text-white top-[-94%] md:top-[-85%] right-[20%] md:right-[18%]"
+                className="absolute text-white top-[-4] md:top-4 right-30 cursor-pointer z-20"
               >
-                <MdCancel size={32} className="cursor-pointer" />
+                <MdCancel size={32} />
               </button>
-            </div>{" "}
-          </>
+              <div className="aspect-video px-2">
+                <VideoBackground movieId={movieId} widthScreen="w-8/12" />
+              </div>
+            </div>
+          </div>
         )}
+
         </div>
 
         {/* alert message*/}

@@ -5,9 +5,9 @@ import { MdCancel } from 'react-icons/md';
 import MovieCard from "./MovieCard";
 import { removeWatchList } from '../utils/movieSlice';
 import { Link } from 'react-router-dom';
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-
+import cinemaImg from "../assets/cinema.png";
 
 const WatchList = () => {
   const watchList = useSelector((store) => store?.movies?.watchList);
@@ -23,15 +23,16 @@ const WatchList = () => {
   return (
     <div className="w-full min-h-screen pt-[150px] px-5 md:pt-[120px] md:pb-5 md:px-10 text-white graybackgroundColor">
       <h2 className="text-3xl font-bold text-white">WatchList</h2>
-      {watchList?.length === 0 ? (
+      {watchList == null || watchList?.length === 0 ? (
         <div className="w-[200px] md:w-[300px] pt-32 md:pt-44 md:py-20 relative top-60 md:top-48 left-1/2 translate-x-[-50%] translate-y-[-50%]">
+          <img src={cinemaImg} alt="no-watchlist"/>
           <p className="text-center text-2xl font-bold text-white">
             No WatchList Movies
           </p>
         </div>
       ) : <div className="grid grid-cols-2 md:grid-cols-6 pl-2 mx-auto">
       {watchList?.map((movie) => (
-        <div>
+        <div key={movie?.id}>
           <button onClick={() => {
               dispatch(removeWatchList(movie?.id));
             }}
@@ -39,7 +40,7 @@ const WatchList = () => {
           >
             <MdCancel size={32} />
           </button>
-          <Link key={movie?.id} to={`/movie/${movie?.id}`}>
+          <Link to={`/movie/${movie?.id}`}>
             <div>
               <MovieCard key={movie?.id} 
                 title={movie?.title}
