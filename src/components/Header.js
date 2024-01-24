@@ -125,7 +125,7 @@ const Header = () => {
           
           {/* dropdown for user-profile*/}
           {isDropdownOpen  && (
-            <div className="absolute right-[5px] md:right-10 mt-14 w-32 z-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+            <div className="absolute right-[15px] md:right-10 mt-14 w-32 z-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
               <div
                   className="py-1"
                   role="menu"

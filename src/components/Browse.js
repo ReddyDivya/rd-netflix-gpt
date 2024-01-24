@@ -34,7 +34,6 @@ const Browse = () => {
 
   return (
     <div>
-        <Header/>
         {
           showGptSearch ? (
             <>
@@ -49,7 +48,6 @@ const Browse = () => {
             </>
           )
         }
-        <Footer/>
     </div>
   )
 }
