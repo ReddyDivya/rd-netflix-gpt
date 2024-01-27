@@ -1,8 +1,10 @@
-# Netflix GPT
+# [Netflix GPT](https://rd-netflix-gpt.vercel.app/)
 
 I developed Netflix-GPT, leveraging OpenAI for interactive movie suggestions. Users can log in via Firebase, access features such as movie details, and trailers, and manage favorites and watchlists across the web and mobile.
 
 ## Demo
+
+
 
 ### Web View
 https://github.com/ReddyDivya/rd-netflix-gpt/assets/34181144/d23e780e-45bf-4ebe-b1b9-e0b51d5fdcdc
